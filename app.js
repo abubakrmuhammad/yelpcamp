@@ -23,6 +23,8 @@ const indexRoutes = require('./routes');
 const campgroundRoutes = require('./routes/campgrounds');
 const commentRoutes = require('./routes/comments');
 
+console.log(process.env.DATABASEURL);
+
 // Connect to DB
 mongoose.connect('mongodb://localhost:27017/YelpCamp', {
   useNewUrlParser: true,
@@ -80,6 +82,6 @@ app.use('/campgrounds', campgroundRoutes);
 app.use('/campgrounds/:id/comments', commentRoutes);
 
 // Listen on port 3000
-app.listen(3000, () => {
+app.listen(3000 || process.env.PORT, () => {
   console.log('YelpCamp server has started!');
 });
